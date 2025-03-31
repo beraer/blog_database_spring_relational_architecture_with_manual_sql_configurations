@@ -37,4 +37,16 @@ public class RoleService {
     public void save(Role role) {
         roleRepository.save(role);
     }
+
+    public List<Role> searchRoleByUsername(String username) {
+        return (List<Role>) roleRepository.searchRoleByUsername(username);
+    }
+
+    public List<Role> searchRoleByEmail(String email) {
+        return (List<Role>) roleRepository.searchRoleByEmail(email);
+    }
+
+    public List<Role> searchRoleByUserId(Long userId) {
+        return (List<Role>) roleRepository.searchRoleByUserId(userId);
+    }
 }

@@ -32,4 +32,17 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional
+    public User searchUserByEmail(String email) {
+        return userRepository.searchUserByEmail(email);
+    }
+
+    @Transactional
+    public User searchUserByUsername(String username) {
+        return userRepository.searchUserByUsername(username);
+    }
+    @Transactional
+    public User searchUserByIdIs(Long id){
+        return userRepository.searchUserByIdIs(id);
+    }
 }
