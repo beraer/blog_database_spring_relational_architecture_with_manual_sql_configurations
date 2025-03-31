@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:blog;DATABASE_TO_UPPER=false
+    username: bera
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /my-my-console
+  jpa:
+    hibernate:
+      ddl-auto: none
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
