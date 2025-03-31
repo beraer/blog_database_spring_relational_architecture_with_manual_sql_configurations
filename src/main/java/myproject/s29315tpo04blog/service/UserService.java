@@ -3,6 +3,7 @@ package myproject.s29315tpo04blog.service;
 import jakarta.transaction.Transactional;
 import myproject.s29315tpo04blog.model.User;
 import myproject.s29315tpo04blog.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,12 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Transactional
     public List<User> findAll() {
@@ -33,16 +39,12 @@ public class UserService {
     }
 
     @Transactional
-    public User searchUserByEmail(String email) {
-        return userRepository.searchUserByEmail(email);
+    public Optional<User> searchUserByEmail(String email) {
+        return Optional.ofNullable(userRepository.searchUserByEmail(email));
     }
 
     @Transactional
-    public User searchUserByUsername(String username) {
-        return userRepository.searchUserByUsername(username);
-    }
-    @Transactional
-    public User searchUserByIdIs(Long id){
-        return userRepository.searchUserByIdIs(id);
+    public Optional<User> searchUserByUsername(String username) {
+        return Optional.ofNullable(userRepository.searchUserByUsername(username));
     }
 }
