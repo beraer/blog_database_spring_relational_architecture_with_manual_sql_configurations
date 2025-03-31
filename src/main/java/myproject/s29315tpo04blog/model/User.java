@@ -16,7 +16,7 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    private String fullName;
+    private String username;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
@@ -30,9 +30,9 @@ public class User {
 
     public User() {}
 
-    public User(String email, String fullName) {
+    public User(String email, String username) {
         this.email = email;
-        this.fullName = fullName;
+        this.username = username;
     }
 
     public Long getId() {
@@ -43,8 +43,8 @@ public class User {
         return email;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getusername() {
+        return username;
     }
 
     public Set<Role> getRoles() {
@@ -63,8 +63,8 @@ public class User {
         this.email = email;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setusername(String username) {
+        this.username = username;
     }
 
     public void setRoles(Set<Role> roles) {

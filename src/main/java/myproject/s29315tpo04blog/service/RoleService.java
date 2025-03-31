@@ -38,15 +38,12 @@ public class RoleService {
         roleRepository.save(role);
     }
 
-    public List<Role> searchRoleByUsername(String username) {
-        return (List<Role>) roleRepository.searchRoleByUsername(username);
-    }
 
-    public List<Role> searchRoleByEmail(String email) {
-        return (List<Role>) roleRepository.searchRoleByEmail(email);
+    public Role findByName(String name) {
+        return roleRepository.findByName(name).orElse(null);
     }
 
     public List<Role> searchRoleByUserId(Long userId) {
-        return (List<Role>) roleRepository.searchRoleByUserId(userId);
+        return (List<Role>) roleRepository.searchRoleByUsersId(userId);
     }
 }
