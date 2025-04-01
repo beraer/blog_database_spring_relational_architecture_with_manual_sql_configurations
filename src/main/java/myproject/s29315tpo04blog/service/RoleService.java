@@ -38,12 +38,11 @@ public class RoleService {
         roleRepository.save(role);
     }
 
-
-    public Role findByName(String name) {
-        return roleRepository.findByName(name).orElse(null);
+    public Optional<Role> findByName(String name) {
+        return roleRepository.findByName(name);
     }
 
-    public List<Role> searchRoleByUserId(Long userId) {
-        return (List<Role>) roleRepository.searchRoleByUsersId(userId);
+    public Optional<List<Role>> searchRoleByUserId(Long userId) {
+        return Optional.ofNullable(roleRepository.searchRoleByUsersId(userId));
     }
 }

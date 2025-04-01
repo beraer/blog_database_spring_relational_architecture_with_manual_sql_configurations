@@ -12,19 +12,19 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    private String name;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User manager;
 
     @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Article> articles = new HashSet<>();
 
     public Blog() {}
 
-    public Blog(String title) {
-        this.title = title;
+    public Blog(String name) {
+        this.name = name;
     }
 
 
@@ -33,11 +33,11 @@ public class Blog {
     }
 
     public User getUser() {
-        return user;
+        return manager;
     }
 
-    public String getTitle() {
-        return title;
+    public String getname() {
+        return name;
     }
 
     public Set<Article> getArticles() {
@@ -48,12 +48,12 @@ public class Blog {
         this.articles = articles;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(User manager) {
+        this.manager = manager;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setname(String name) {
+        this.name = name;
     }
 
     public void setId(Long id) {

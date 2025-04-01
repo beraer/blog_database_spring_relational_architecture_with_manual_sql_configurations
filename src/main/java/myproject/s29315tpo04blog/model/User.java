@@ -18,6 +18,9 @@ public class User {
 
     private String username;
 
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Set<Article> articles = new HashSet<>();
+
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "user_roles",
@@ -25,8 +28,8 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Blog> blogs = new HashSet<>();
+    @OneToOne(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Blog blog;
 
     public User() {}
 
@@ -43,17 +46,18 @@ public class User {
         return email;
     }
 
-    public String getusername() {
-        return username;
-    }
-
     public Set<Role> getRoles() {
         return roles;
     }
 
-    public Set<Blog> getBlogs() {
-        return blogs;
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
     }
+
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -71,7 +75,19 @@ public class User {
         this.roles = roles;
     }
 
-    public void setBlogs(Set<Blog> blogs) {
-        this.blogs = blogs;
+    public String getUsername() {
+        return username;
+    }
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
     }
 }

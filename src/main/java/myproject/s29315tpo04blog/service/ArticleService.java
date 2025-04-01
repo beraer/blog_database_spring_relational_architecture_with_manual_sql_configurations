@@ -31,15 +31,11 @@ public class ArticleService {
         articleRepository.save(article);
     }
 
-    public Article searchArticleByTitle(String title) {
-        return articleRepository.searchArticleByTitle(title);
+    public Optional<List<Article>> searchArticlesByAuthor_Id(Long author_id) {
+        return Optional.ofNullable(articleRepository.searchArticlesByAuthor_Id(author_id));
     }
 
-    public List<Article> searchArticlesByAuthor_Id(Long author_id) {
-        return articleRepository.searchArticlesByAuthor_Id(author_id);
-    }
-
-    public List<Article> searchArticlesByAuthor_username(String username) {
-        return articleRepository.searchArticlesByAuthor_username(username);
+    public Optional<List<Article>> searchArticlesByAuthor_username(String username) {
+        return Optional.ofNullable(articleRepository.searchArticlesByAuthor_username(username));
     }
 }

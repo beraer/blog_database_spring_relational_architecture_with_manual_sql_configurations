@@ -5,11 +5,11 @@ import myproject.s29315tpo04blog.model.User;
 import myproject.s29315tpo04blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
-@Controller
+@RestController
 public class UserController {
     private UserService userService;
 
