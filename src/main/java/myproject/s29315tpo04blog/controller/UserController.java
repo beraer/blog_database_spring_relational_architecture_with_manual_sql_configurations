@@ -5,11 +5,10 @@ import myproject.s29315tpo04blog.model.User;
 import myproject.s29315tpo04blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class UserController {
     private UserService userService;
 
@@ -20,6 +19,10 @@ public class UserController {
 
     public List<User> getAllUser(){
         return userService.findAll();
+    }
+
+    public List<User> getUsersWithMoreThanArticles(int min) {
+        return userService.findUsersWithMoreThanArticles(min);
     }
 
     public User getUserById(Long id) throws UserNotFoundException {

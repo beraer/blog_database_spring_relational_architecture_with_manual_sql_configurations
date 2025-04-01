@@ -43,5 +43,7 @@ public class RoleController {
         return (Role) roleService.searchRoleByUserId(userId).orElseThrow(RoleNotFoundException::new);
     }
 
-
+    public Role findByEmail(String email) throws RoleNotFoundException {
+        return (Role) roleService.searchRoleByUserEmail(email).orElseThrow(RoleNotFoundException::new);
+    }
 }

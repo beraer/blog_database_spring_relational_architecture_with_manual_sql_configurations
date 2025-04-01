@@ -1,6 +1,7 @@
 package myproject.s29315tpo04blog.service;
 
 import jakarta.transaction.Transactional;
+import myproject.s29315tpo04blog.exception.UserNotFoundException;
 import myproject.s29315tpo04blog.model.User;
 import myproject.s29315tpo04blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,24 @@ public class UserService {
     }
 
     @Transactional
+    public List<User> findUsersWithMoreThanArticles(int count) {
+        return userRepository.findUsersWithMoreThanXArticles(count);
+    }
+
+    @Transactional
     public List<User> findAll() {
         return (List<User>) userRepository.findAll();
+    }
+
+    @Transactional
+    public User update(User user) throws UserNotFoundException {
+        User updatedUser = userRepository.findById(user.getId()).orElseThrow(UserNotFoundException::new);
+        updatedUser.setUsername(user.getUsername());
+        updatedUser.setEmail(user.getEmail());
+        updatedUser.setArticles(user.getArticles());
+        updatedUser.setRoles(user.getRoles());
+        updatedUser.setBlog(user.getBlog());
+        return userRepository.save(updatedUser);
     }
 
     @Transactional

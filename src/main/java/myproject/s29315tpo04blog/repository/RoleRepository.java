@@ -14,6 +14,9 @@ public interface RoleRepository extends CrudRepository<Role, Long> {
 
     Optional<Role> findByName(String name);
 
+    @Query("SELECT r FROM Role r JOIN r.users u WHERE u.email = :email")
+    List<Role> findRolesByUserEmail(@Param("email") String email);
+
     @Query("SELECT r FROM Role r JOIN r.users u WHERE u.id = :id")
-    List<Role> searchRoleByUsersId(@Param("id") Long id);
+    List<Role> searchRoleByUsersId(Long id);
 }

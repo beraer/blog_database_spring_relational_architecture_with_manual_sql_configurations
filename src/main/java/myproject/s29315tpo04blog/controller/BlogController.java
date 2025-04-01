@@ -33,4 +33,16 @@ public class BlogController {
         blogService.save(blog);
     }
 
+    public void updateBlog(Blog blog) {
+        blogService.save(blog);
+    }
+
+    public Blog searchBlogByName(String name) throws BlogNotFoundException {
+        return blogService.searchBlogByName(name).orElseThrow(BlogNotFoundException::new);
+    }
+
+    public List<Blog> findBlogsMoreThanXArticles(int count) throws BlogNotFoundException {
+       return blogService.findBlogsWithMoreThanXArticles(count).orElseThrow(BlogNotFoundException::new);
+    }
+
 }
